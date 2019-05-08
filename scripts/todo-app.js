@@ -17,14 +17,17 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 
 //Add todo to array and rerender
 document.querySelector('#add-todo-form').addEventListener('submit', (e) => {
+  let input = e.target.elements.addTodo.value.trim();
   e.preventDefault();
-  todos.push({
-    id: uuidv4(),
-    text: e.target.elements.addTodo.value,
-    completed: false});
-  saveTodos(todos);  
-  renderTodos(todos, filter);
-  e.target.elements.addTodo.value = '';
+  if (input) {
+    todos.push({
+      id: uuidv4(),
+      text: input,
+      completed: false});
+    saveTodos(todos);  
+    renderTodos(todos, filter);
+    e.target.elements.addTodo.value = '';
+  }
 })
 
 
